@@ -12,3 +12,5 @@
 7. Run the circuit and press the input button with a circle
 8. After one second, press the same input button, then click on the bottom button
 9. Press the top button to increment through the memory and press the bottom button to reset back to 0.
+
+[2024-05-23 12-19-55.mp4](..%2F..%2FVideos%2FOBS%2F2024-05-23%2012-19-55.mp4)
