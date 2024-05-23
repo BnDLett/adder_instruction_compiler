@@ -19,7 +19,7 @@ class Compiler:
 
         self.recursive_compile()
 
-    def compile(self, instruction: str) -> str:
+    def compile(self, instruction: str, eof: int) -> str:
         split_instruction = instruction.split(" ")
 
         if len(split_instruction) < 2:
@@ -42,7 +42,7 @@ class Compiler:
         str_bin_a = str(bin_a).removeprefix("0b").rjust(4, '0')
         str_bin_b = str(bin_b).removeprefix("0b").rjust(4, '0')
 
-        return f"0b{str_bin_a}{str_bin_b}{str_operation_flag}"
+        return f"0b{str_bin_a}{str_bin_b}{str_operation_flag}{eof}"
 
     def add_instruction(self, instruction):
         self.instructions.append(instruction)
@@ -50,9 +50,13 @@ class Compiler:
     def recursive_compile(self):
         bin_instructions = []
         hex_instructions = []
+        eof = 0
 
-        for instruction in self.instructions:
-            bin_instruction = self.compile(instruction)
+        for index, instruction in enumerate(self.instructions):
+            if index + 1 == len(self.instructions):
+                eof = 1
+
+            bin_instruction = self.compile(instruction, eof)
             bin_instructions.append(bin_instruction)
             hex_instructions.append(hex(int(bin_instruction, base=2)))
 
